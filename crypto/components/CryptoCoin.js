@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { StyleSheet } from 'react-native'
 import { AppLoading } from 'expo';
-import { Card, CardItem, Left, Right, Body, Text, Thumbnail } from 'native-base';
+import { Card, CardItem, Left, Right, Body, Text, Thumbnail, View } from 'native-base';
+import { LineChart } from 'react-native-svg-charts'
 
 class CryptoCoin extends Component {
   constructor(props) {
@@ -37,11 +39,17 @@ class CryptoCoin extends Component {
     const trades = json.map(interval => parseFloat(interval[1]))
     const open = trades[0]
     const close = trades.slice(-1)[0]
-    const percentage = (((close - open) / open) * 100)
+    const percentage = (((close - open) / open) * 100).toFixed(2)
+    this.setState({
+      isLoading: false,
+      trades: trades,
+      price: close,
+      percentage: percentage
+    })
   }
 
   render() {
-    const { isLoading } = this.state
+    const { isLoading, trades, price, percentage } = this.state
     return (
       <Card>
         <CardItem>
@@ -58,19 +66,25 @@ class CryptoCoin extends Component {
             isLoading && <AppLoading />
           }
           {
-            !isLoading && <Text>Chart Loading...</Text>
+            !isLoading &&
+            <View style={styles.view}>
+              <LineChart
+                style={styles.chart}
+                data={trades}
+                svg={{ stroke: styles.chart.color}}
+              />
+            </View>
           }
-          {/* <Text>Chart Placeholder</Text> */}
         </CardItem>
         {
           !isLoading &&
           <CardItem footer>
             <Left>
-              <Text>5%</Text>
+              <Text>{percentage}%</Text>
             </Left>
             <Body />
             <Right>
-              <Text>$13,275.00</Text>
+              <Text>${price.toLocaleString('en-us')}</Text>
             </Right>
           </CardItem>
         }
@@ -80,3 +94,14 @@ class CryptoCoin extends Component {
 }
 
 export default CryptoCoin
+
+const styles = StyleSheet.create({
+  view: {
+    flex: 1,
+    height: 75
+  },
+  chart: {
+    height: 75,
+    color: '#2bdb1f'
+  }
+})
