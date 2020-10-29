@@ -1,21 +1,55 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { AppLoading } from 'expo';
+import { Platform, StatusBar, StyleSheet } from 'react-native';
+import { Root, View, Container, Content, Text, Spinner } from 'native-base'
+import TitleBar from './components/TitleBar'
+import CryptoCoin from './components/CryptoCoin'
+import * as Font from 'expo-font';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+    };
+  }
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      Roboto: require('native-base/Fonts/Roboto.ttf'),
+      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf')
+    });
+    this.setState({ isLoading: false });
+  }
+  render() {
+    const { isLoading } = this.state
+
+    if (isLoading) {
+      return <AppLoading />
+    }
+    return (
+      <Root>
+        <View style={styles.container}>
+          <Container>
+            <TitleBar title="Cryptocurrencies"/>
+            <Content>
+              <CryptoCoin />
+            </Content>
+          </Container>
+        </View>
+      </Root>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    ...Platform.select({
+      android: {
+        marginTop: StatusBar.currentHeight
+      }
+    })
   },
 });
