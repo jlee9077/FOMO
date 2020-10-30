@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native'
 import { AppLoading } from 'expo';
 import { Card, CardItem, Left, Right, Body, Text, Thumbnail, View } from 'native-base';
 import { LineChart } from 'react-native-svg-charts'
+import PropTypes from 'prop-types'
 
 class CryptoCoin extends Component {
   constructor(props) {
@@ -34,7 +35,8 @@ class CryptoCoin extends Component {
   //   ]
   // ]
   async componentDidMount() {
-    const res = await fetch('https://api.binance.com/api/v1/klines?symbol=BTCUSDT&interval=30m&limit=50')
+    const { name, quote, time } = this.props
+    const res = await fetch(`https://api.binance.com/api/v1/klines?symbol=${name}${quote}&interval=${time}&limit=50`)
     const json = await res.json()
     const trades = json.map(interval => parseFloat(interval[1]))
     const open = trades[0]
@@ -48,20 +50,31 @@ class CryptoCoin extends Component {
     })
   }
 
+  priceColor() {
+    const { percentage } = this.state
+    if (parseFloat(percentage) < 0) {
+      return styles.down
+    }
+    return styles.up
+  }
+
   render() {
     const { isLoading, trades, price, percentage } = this.state
+    const { name, quote, time } = this.props
+    const style = this.priceColor()
+
     return (
-      <Card>
-        <CardItem>
+      <Card style={styles.cardSetting}>
+        <CardItem style={styles.background}>
           <Left>
-            <Thumbnail source={{uri: 'https://cryptoicons.org/api/icon/btc/128'}} />
+            <Thumbnail source={{uri: `https://cryptoicons.org/api/icon/${name.toLowerCase()}/128`}} />
             <Body>
-              <Text>BTC/USDT</Text>
-              <Text note>5m</Text>
+              <Text style={styles.text}>{name}/{quote}</Text>
+              <Text note style={styles.text}>{time}</Text>
             </Body>
           </Left>
         </CardItem>
-        <CardItem>
+        <CardItem style={styles.background}>
           {
             isLoading && <AppLoading />
           }
@@ -71,20 +84,20 @@ class CryptoCoin extends Component {
               <LineChart
                 style={styles.chart}
                 data={trades}
-                svg={{ stroke: styles.chart.color}}
+                svg={{ stroke: style.color}}
               />
             </View>
           }
         </CardItem>
         {
           !isLoading &&
-          <CardItem footer>
+          <CardItem footer style={styles.background}>
             <Left>
-              <Text>{percentage}%</Text>
+              <Text style={style}>{percentage}%</Text>
             </Left>
             <Body />
             <Right>
-              <Text>${price.toLocaleString('en-us')}</Text>
+              <Text style={style}>${price.toLocaleString('en-us')}</Text>
             </Right>
           </CardItem>
         }
@@ -98,10 +111,35 @@ export default CryptoCoin
 const styles = StyleSheet.create({
   view: {
     flex: 1,
-    height: 75
+    height: 75,
   },
   chart: {
     height: 75,
+  },
+  up: {
     color: '#2bdb1f'
+  },
+  down: {
+    color: '#cf0c0c'
+  },
+  text: {
+    color: '#FFFFFF'
+  },
+  border: {
+    color: '#181818'
+  },
+  cardSetting: {
+    marginLeft: 0,
+    marginRight: 0,
+    backgroundColor: '#181818'
+  },
+  background: {
+    backgroundColor: '#181818'
   }
 })
+
+CryptoCoin.propTypes = {
+  name: PropTypes.string,
+  quote: PropTypes.string,
+  time: PropTypes.string
+}
