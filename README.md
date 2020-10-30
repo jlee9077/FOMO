@@ -17,6 +17,7 @@ A cryptocurrency watchlist to track the latest updates on price movement for the
 
 ## Images
 
-![Screenshot_20201030-035745](https://user-images.githubusercontent.com/38798668/97736775-8ef73a80-1ab2-11eb-802d-468a163658bb.png)
-![Screenshot_20201029-204330](https://user-images.githubusercontent.com/38798668/97736829-9fa7b080-1ab2-11eb-83b3-20a216d00e02.png)
-![Screenshot_20201029-204351](https://user-images.githubusercontent.com/38798668/97736818-9d455680-1ab2-11eb-908d-487d85e81c9a.png)
+<img src="https://user-images.githubusercontent.com/38798668/97736775-8ef73a80-1ab2-11eb-802d-468a163658bb.png" width=50%>
+<img src="https://user-images.githubusercontent.com/38798668/97736829-9fa7b080-1ab2-11eb-83b3-20a216d00e02.png" width=50%>
+<img src="https://user-images.githubusercontent.com/38798668/97736818-9d455680-1ab2-11eb-908d-487d85e81c9a.png" width=50%>
+
