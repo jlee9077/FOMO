@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import { Header, Left, Body, Right, Title } from 'native-base'
 
 const TitleBar = ({title}) => (
-  <Header>
+  <Header style={{ backgroundColor: '#181818' }}>
     <Left />
     <Body>
-      <Text>{title}</Text>
+      <Text style={{ color: '#FFFFFF' }}>{title}</Text>
     </Body>
     <Right />
   </Header>

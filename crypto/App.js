@@ -30,10 +30,34 @@ export default class App extends Component {
     return (
       <Root>
         <View style={styles.container}>
-          <Container>
+          <Container style={{ backgroundColor: '#000000' }}>
             <TitleBar title="Cryptocurrencies"/>
             <Content>
-              <CryptoCoin />
+              <CryptoCoin
+               name='BTC'
+               quote='USDT'
+               time='30m'
+              />
+              <CryptoCoin
+               name='ETH'
+               quote='USDT'
+               time='30m'
+              />
+              <CryptoCoin
+               name='XRP'
+               quote='USDT'
+               time='30m'
+              />
+              <CryptoCoin
+               name='BCH'
+               quote='USDT'
+               time='30m'
+              />
+              <CryptoCoin
+               name='LINK'
+               quote='USDT'
+               time='30m'
+              />
             </Content>
           </Container>
         </View>
@@ -45,11 +69,12 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    ...Platform.select({
-      android: {
-        marginTop: StatusBar.currentHeight
-      }
-    })
-  },
+    backgroundColor: '#000000',
+    alignSelf: 'stretch'
+    // ...Platform.select({
+    //   android: {
+    //     marginTop: StatusBar.currentHeight
+    //   }
+    // })
+  }
 });
