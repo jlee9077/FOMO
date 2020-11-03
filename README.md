@@ -12,6 +12,7 @@ A cryptocurrency watchlist to track the latest updates on price movement for the
 - [React](https://reactjs.org/)
 - [Native-Base](https://nativebase.io/)
 - [React Native SVG Charts](https://github.com/JesperLekland/react-native-svg-charts)
+- [Binance API](https://github.com/binance-exchange/binance-official-api-docs/blob/master/rest-api.md#symbol-price-ticker)
 
 
 
