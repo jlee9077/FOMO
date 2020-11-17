@@ -1,4 +1,28 @@
 # FOMO
+A Cryptocurrency application to track the top Cryptocurrencies on the market
+
+## Getting Started
+
+Clone the repo as shown below:
+
+<img src="https://user-images.githubusercontent.com/38798668/99356650-79d32780-2878-11eb-81bc-c9707a9acf66.png" width=50%>
+
+
+Next go into the `crypto` directory.
+```
+cd crypto
+```
+
+Make sure to download the expo app from the Google Play Store or the Apple App Store. Click on the link shown below:
+
+- [Expo](https://expo.io/tools)
+
+Next run the following command:
+
+```
+expo start
+```
+
 
 ## Summary
 
