@@ -33,6 +33,7 @@ or on your browser:
 
 Scan the QR code with your phone camera and click away!
 
+
 ## Summary
 
 A cryptocurrency watchlist to track the latest updates on price movement for the most popular coins
