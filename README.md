@@ -23,6 +23,15 @@ Next run the following command:
 expo start
 ```
 
+You should see the following up in your terminal:
+
+<img src="https://user-images.githubusercontent.com/38798668/99454844-fc99c800-28f4-11eb-93f1-f4863dd96dc7.png" width=50%>
+
+or on your browser:
+
+<img src="https://user-images.githubusercontent.com/38798668/99454835-f9064100-28f4-11eb-9041-c7186eeaad81.png" width=50%>
+
+Scan the QR code with your phone camera and click away!
 
 ## Summary
 
